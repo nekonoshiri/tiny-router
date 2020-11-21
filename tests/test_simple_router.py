@@ -2,13 +2,12 @@ from unittest.mock import sentinel
 
 import pytest
 
-from tiny_router import MethodNotAllowed, ResourceNotFound, RouteNotFound, Router
-from tiny_router.routes import SimpleRoutes
+from tiny_router import MethodNotAllowed, ResourceNotFound, RouteNotFound, SimpleRouter
 
 
 @pytest.fixture
 def router():
-    router = Router(SimpleRoutes())
+    router = SimpleRouter()
 
     @router.get("/users")
     def get_users():

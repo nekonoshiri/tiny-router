@@ -1,27 +1,31 @@
 from __future__ import annotations
 
+from abc import ABC, abstractmethod
 from typing import Callable, Generic, TypeVar
 
-from .routes import Routes
+Self = TypeVar("Self")
 
 Route = TypeVar("Route")
 
 RouteDecorator = Callable[[Route], None]
 
 
-class Router(Generic[Route]):
-    def __init__(self, routes: Routes[Route]) -> None:
-        self.routes = routes
+class Router(ABC, Generic[Route]):
+    @abstractmethod
+    def include(self: Self, other: Self) -> None:
+        ...
 
-    def include(self, router: Router[Route]) -> None:
-        self.routes = self.routes.merge(router.routes)
-
+    @abstractmethod
     def resolve(self, method: str, resource: str) -> Route:
-        return self.routes.resolve(method, resource)
+        ...
+
+    @abstractmethod
+    def add(self, method: str, resource: str, route: Route) -> None:
+        ...
 
     def route(self, method: str, resource: str) -> RouteDecorator[Route]:
-        def _decorator(r: Route) -> None:
-            self.routes.add(method, resource, r)
+        def _decorator(route: Route) -> None:
+            self.add(method, resource, route)
 
         return _decorator
 

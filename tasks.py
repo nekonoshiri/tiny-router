@@ -3,20 +3,26 @@ import invoke
 module_name = "tiny_router"
 src = "tiny_router"
 tests = "tests"
+examples = "examples"
 
 
 @invoke.task
 def lint(c):
-    c.run(f"isort {src} {tests}")
-    c.run(f"black {src} {tests}")
-    c.run(f"flake8 {src} {tests}")
-    c.run(f"mypy {src}")
+    c.run(f"isort {src} {tests} {examples}")
+    c.run(f"black {src} {tests} {examples}")
+    c.run(f"flake8 {src} {tests} {examples}")
+    c.run(f"mypy {src} {examples}")
     c.run(f"pydocstyle {src}")
 
 
 @invoke.task
 def test(c):
     c.run(f"pytest {tests}")
+
+
+@invoke.task
+def example(c):
+    c.run(f"pytest {examples}")
 
 
 @invoke.task

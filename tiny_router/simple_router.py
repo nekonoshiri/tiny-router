@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from typing import Dict, Generic, TypeVar
+from typing import Dict, TypeVar
 
-from ..exceptions import MethodNotAllowed, ResourceNotFound
+from .exceptions import MethodNotAllowed, ResourceNotFound
+from .router import Router
 
 Route = TypeVar("Route")
 
@@ -40,14 +41,12 @@ class ResourceMapping(Dict[str, MethodMapping[Route]]):
         return result
 
 
-class SimpleRoutes(Generic[Route]):
+class SimpleRouter(Router[Route]):
     def __init__(self) -> None:
         self._resource_mapping: ResourceMapping[Route] = ResourceMapping()
 
-    def merge(self, other: SimpleRoutes[Route]) -> SimpleRoutes[Route]:
-        result: SimpleRoutes[Route] = SimpleRoutes()
-        result._resource_mapping = self._resource_mapping.merge(other._resource_mapping)
-        return result
+    def include(self, other: SimpleRouter[Route]) -> None:
+        self._resource_mapping = self._resource_mapping.merge(other._resource_mapping)
 
     def resolve(self, method: str, resource: str) -> Route:
         return self._resource_mapping.resolve(resource).resolve(method)

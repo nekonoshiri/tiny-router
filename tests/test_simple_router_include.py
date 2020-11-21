@@ -1,12 +1,11 @@
 import pytest
 
-from tiny_router import MethodNotAllowed, ResourceNotFound, Router
-from tiny_router.routes import SimpleRoutes
+from tiny_router import MethodNotAllowed, ResourceNotFound, SimpleRouter
 
 
 @pytest.fixture
 def router1():
-    router1 = Router(SimpleRoutes())
+    router1 = SimpleRouter()
 
     @router1.get("/users")
     def get_users_1():
@@ -29,7 +28,7 @@ def router1():
 
 @pytest.fixture
 def router2():
-    router2 = Router(SimpleRoutes())
+    router2 = SimpleRouter()
 
     @router2.get("/users")
     def get_users_2():
