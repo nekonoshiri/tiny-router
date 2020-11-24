@@ -4,13 +4,18 @@ version = "0.0.2"
 license = "MIT"
 description = "Tiny HTTP router"
 authors = ["Shiri Nekono <gexira.halen.toms@gmail.com>"]
-# maintainers = []
+maintainers = ["Shiri Nekono <gexira.halen.toms@gmail.com>"]
 readme = "README.md"
 homepage = "https://github.com/nekonoshiri/tiny-router"
 repository = "https://github.com/nekonoshiri/tiny-router"
-# documentation = ""
-# keywords = []
-# classifiers = []
+documentation = "https://github.com/nekonoshiri/tiny-router"
+keywords = ["router"]
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Intended Audience :: Developers",
+  "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+  "Topic :: Software Development :: Libraries"
+]
 
 [tool.poetry.dependencies]
 python = "^3.7"
