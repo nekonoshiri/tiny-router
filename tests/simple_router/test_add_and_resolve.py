@@ -13,12 +13,19 @@ def router():
     def get_users():
         return "GET_USERS"
 
+    def post_users():
+        return "POST_USERS"
+
+    router.add("POST", "/users", post_users)
+
     return router
 
 
 def test_resolve(router):
     route = router.resolve("GET", "/users")
     assert route() == "GET_USERS"
+    route = router.resolve("POST", "/users")
+    assert route() == "POST_USERS"
 
 
 def test_resolve_not_found(router):
