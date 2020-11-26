@@ -32,6 +32,7 @@ route = router.resolve("GET", "/users")
 ## Features
 
 - `SimpleRouter`: exact-match router
+- `SimpleRegexRouter`: simple regex-based router
 - Abstract `Router`: user can implement their own routers
 - Support for type hints
 

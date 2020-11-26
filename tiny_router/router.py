@@ -5,12 +5,14 @@ from typing import Callable, Generic, TypeVar
 
 Route = TypeVar("Route")
 
+ResolvedRoute = TypeVar("ResolvedRoute")
+
 RouteDecorator = Callable[[Route], None]
 
 
-class Router(ABC, Generic[Route]):
+class Router(ABC, Generic[Route, ResolvedRoute]):
     @abstractmethod
-    def resolve(self, method: str, resource: str) -> Route:
+    def resolve(self, method: str, resource: str) -> ResolvedRoute:
         ...
 
     @abstractmethod

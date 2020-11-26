@@ -41,7 +41,7 @@ class ResourceMapping(Dict[str, MethodMapping[Route]]):
         return result
 
 
-class SimpleRouter(Router[Route]):
+class SimpleRouter(Router[Route, Route]):
     def __init__(self) -> None:
         self._resource_mapping: ResourceMapping[Route] = ResourceMapping()
 
