@@ -3,18 +3,12 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Callable, Generic, TypeVar
 
-Self = TypeVar("Self")
-
 Route = TypeVar("Route")
 
 RouteDecorator = Callable[[Route], None]
 
 
 class Router(ABC, Generic[Route]):
-    @abstractmethod
-    def include(self: Self, other: Self) -> None:
-        ...
-
     @abstractmethod
     def resolve(self, method: str, resource: str) -> Route:
         ...
