@@ -6,4 +6,4 @@ RouteResponse = Dict[str, Any]
 
 
 def Router() -> SimpleRegexRouter[RouteResponse]:
-    return SimpleRegexRouter[RouteResponse](resource_resolver="last-in")
+    return SimpleRegexRouter[RouteResponse](matching_precedence="last-in")

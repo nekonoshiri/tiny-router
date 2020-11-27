@@ -10,7 +10,7 @@ from tiny_router import (
 
 @pytest.fixture
 def router():
-    router = SimpleRegexRouter(resource_resolver="last-in")
+    router = SimpleRegexRouter(matching_precedence="last-in")
 
     @router.get("/users")
     def get_users(match):

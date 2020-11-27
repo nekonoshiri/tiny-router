@@ -15,13 +15,13 @@ ResolvedRoute = Callable[[], RouteResponse]
 
 
 class SimpleRegexRouter(Router[Route[RouteResponse], ResolvedRoute[RouteResponse]]):
-    def __init__(self, resource_resolver: Literal["first-in", "last-in"]) -> None:
-        if resource_resolver == "first-in":
+    def __init__(self, matching_precedence: Literal["first-in", "last-in"]) -> None:
+        if matching_precedence == "first-in":
             self._resource_resolver = first_in
-        elif resource_resolver == "last-in":
+        elif matching_precedence == "last-in":
             self._resource_resolver = last_in
         else:
-            raise ValueError(f"unknown resource_resolver '{resource_resolver}'")
+            raise ValueError(f"unknown matching_precedence '{matching_precedence}'")
 
         self._resource_mapping: ResourceMapping[RouteResponse] = ResourceMapping()
 
