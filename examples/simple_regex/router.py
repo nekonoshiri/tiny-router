@@ -1,9 +1,10 @@
-from typing import Any, Dict
+from typing import Any, Callable, Dict
 
 from tiny_router import SimpleRegexRouter
 
-RouteResponse = Dict[str, Any]
+ResolvedRoute = Callable[[], Dict[str, Any]]
 
 
-def Router() -> SimpleRegexRouter[RouteResponse]:
-    return SimpleRegexRouter[RouteResponse](matching_precedence="last-in")
+class Router(SimpleRegexRouter[ResolvedRoute]):
+    def __init__(self) -> None:
+        super().__init__(matching_precedence="last-in")

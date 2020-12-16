@@ -4,11 +4,17 @@ from tiny_router import SimpleRegexRouter
 def set_router(router):
     @router.get(r"/users/.*")
     def get_user(match):
-        return "USER"
+        def _get_user():
+            return "USER"
+
+        return _get_user
 
     @router.get("/users/me")
     def get_me(match):
-        return "ME"
+        def _get_me():
+            return "ME"
+
+        return _get_me
 
 
 def test_first_in():

@@ -13,13 +13,19 @@ def test_can_resolve_both_routers_routes(Router):
 
     @router.get("/users")
     def get_users(match):
-        return "GET_USERS"
+        def _get_users():
+            return "GET_USERS"
+
+        return _get_users
 
     another_router = Router()
 
     @another_router.post("/items")
     def post_items(match):
-        return "POST_ITEMS"
+        def _post_items():
+            return "POST_ITEMS"
+
+        return _post_items
 
     router.include(another_router)
 
@@ -32,13 +38,19 @@ def test_override_will_occur_when_routes_are_same(Router):
 
     @router.get("/path")
     def path(match):
-        return "GET_PATH"
+        def _path():
+            return "GET_PATH"
+
+        return _path
 
     another_router = Router()
 
     @another_router.get("/path")
     def overriden_path(match):
-        return "GET_OVERRIDEN_PATH"
+        def _overriden_path():
+            return "GET_OVERRIDEN_PATH"
+
+        return _overriden_path
 
     router.include(another_router)
 
@@ -50,13 +62,19 @@ def test_override_will_not_occur_when_methods_differ(Router):
 
     @router.get("/path")
     def get_path(match):
-        return "GET_PATH"
+        def _get_path():
+            return "GET_PATH"
+
+        return _get_path
 
     another_router = Router()
 
     @another_router.post("/path")
     def post_path(match):
-        return "POST_PATH"
+        def _post_path():
+            return "POST_PATH"
+
+        return _post_path
 
     router.include(another_router)
 
@@ -69,13 +87,19 @@ def test_override_will_not_occur_when_resources_differ(Router):
 
     @router.get("/path1")
     def get_path1(match):
-        return "GET_PATH1"
+        def _get_path1():
+            return "GET_PATH1"
+
+        return _get_path1
 
     another_router = Router()
 
     @another_router.get("/path2")
     def get_path2(match):
-        return "GET_PATH2"
+        def _get_path2():
+            return "GET_PATH2"
+
+        return _get_path2
 
     router.include(another_router)
 

@@ -14,11 +14,17 @@ def router():
 
     @router.get("/users")
     def get_users(match):
-        return "GET_USERS"
+        def _get_users():
+            return "GET_USERS"
+
+        return _get_users
 
     def get_user(match):
-        user_id = match.group("user_id")
-        return f"GET_USER_{user_id}"
+        def _get_user():
+            user_id = match.group("user_id")
+            return f"GET_USER_{user_id}"
+
+        return _get_user
 
     router.add("GET", r"/users/(?P<user_id>\d+)", get_user)
 
