@@ -41,7 +41,7 @@ More examples are in `examples/` directory of
 
 ### Module `tiny_router`
 
-#### *abstract class* `Router`
+#### *abstract class* `Router[Route, ResolvedRoute]`
 
 Router class, which can add and resolve routes.
 Classes implementing this class must implement abstract method `add` and `resolve`.
