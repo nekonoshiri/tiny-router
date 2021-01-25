@@ -1,1 +1,1 @@
-from .router import SimpleRegexRouter
+from .router import SimpleRegexRouter as SimpleRegexRouter
