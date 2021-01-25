@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tiny-router"
-version = "0.0.7"
+version = "0.0.8"
 license = "MIT"
 description = "Tiny HTTP router"
 authors = ["Shiri Nekono <gexira.halen.toms@gmail.com>"]
