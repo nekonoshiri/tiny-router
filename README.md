@@ -5,7 +5,9 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![license](https://img.shields.io/github/license/nekonoshiri/tiny-router)](https://github.com/nekonoshiri/tiny-router/blob/main/LICENSE)
 
-A tiny HTTP router like this:
+Tiny HTTP router.
+
+## Usage
 
 ```Python
 from tiny_router import SimpleRouter
@@ -13,21 +15,20 @@ from tiny_router import SimpleRouter
 router = SimpleRouter()
 
 
-@router.get("/users")
-def list_users():
-    ...
+@router.get("/users/{user_id}")
+def get_user(params):
+    if params.get("user_id") == 1:
+        return {"id": 1, "name": "Alice"}
 
 
-@router.post("/users")
-def create_user():
-    ...
+route = router.resolve("GET", "/users/{user_id}")
+user = route({"user_id": 1})
 
-
-another_router = SimpleRouter()
-router.include(another_router)
-
-route = router.resolve("GET", "/users")
+assert user == {"id": 1, "name": "Alice"}
 ```
+
+More examples are in `examples/` directory of
+[repository](https://github.com/nekonoshiri/tiny-router).
 
 ## Features
 
@@ -36,6 +37,9 @@ route = router.resolve("GET", "/users")
 - Abstract `Router`: user can implement their own routers
 - Support for type hints
 
-## Usage
+## API
 
-See `examples/` directory of [repository](https://github.com/nekonoshiri/tiny-router).
+### Module `tiny_router`
+
+TODO
+
