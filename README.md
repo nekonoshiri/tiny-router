@@ -128,6 +128,8 @@ Subclass of `RouteNotFound`, representing that the resource is not found.
 TODO: 引数なしで raise したらどうなるのか検証
 TODO: メンバ変数について追記
 
+---
+
 ### Module `tiny_router.simple`
 
 #### *class* `SimpleRouter[Route]()`
@@ -151,6 +153,8 @@ Add a route to the router.
 `MethodNotAllowed(method)` exception を投げます。
 
 Otherwise, raise `ResourceNotFound(resource)` exception.
+
+---
 
 ### Module `tiny_router.simple_regex`
 
