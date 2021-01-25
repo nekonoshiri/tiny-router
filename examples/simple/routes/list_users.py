@@ -1,13 +1,11 @@
-from typing import Any, Callable, Dict
+from typing import Any, Dict
 
-from tiny_router import SimpleRouter
+from ..router import Router
 
-Route = Callable[[], Dict[str, Any]]
-
-router = SimpleRouter[Route]()
+router = Router()
 
 
 @router.get("/users")
-def list_users() -> Any:
+def list_users() -> Dict[str, Any]:
     users = [{"id": "001", "name": "user1"}]
     return {"users": users}
