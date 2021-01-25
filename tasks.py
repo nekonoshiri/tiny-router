@@ -12,7 +12,6 @@ def lint(c):
     c.run(f"black {src} {tests} {examples}")
     c.run(f"flake8 {src} {tests} {examples}")
     c.run(f"mypy {src} {examples}")
-    c.run(f"pydocstyle {src}")
 
 
 @invoke.task
