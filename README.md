@@ -110,18 +110,6 @@ Same as `route("DELETE", resource)`.
 
 Same as `route("HEAD", resource)`.
 
-#### *class* `SimpleRouter`
-
-An implementation of `Router`.
-
-TODO
-
-#### *class* `SimpleRegexRouter`
-
-An implementation of `Router`.
-
-TODO
-
 #### *class* `RouteNotFound`
 
 Subclass of `Exception`, representing that the route is not found.
@@ -130,6 +118,78 @@ Subclass of `Exception`, representing that the route is not found.
 
 Subclass of `RouteNotFound`, representing that the method is not allowed.
 
+TODO: 引数なしで raise したらどうなるのか検証
+TODO: メンバ変数について追記
+
 #### *class* `ResourceNotFound(resource: str)`
 
 Subclass of `RouteNotFound`, representing that the resource is not found.
+
+TODO: 引数なしで raise したらどうなるのか検証
+TODO: メンバ変数について追記
+
+### Module `tiny_router.simple`
+
+#### *class* `SimpleRouter[Route]`
+
+An implementation of `Router[Route, Route]`.
+
+##### *type parameter* `Route`
+
+Type of routes passed to `add` method or returned from `resolve` method.
+
+##### *method* `add(method: str, resource: str, route: Route) -> None`
+
+Add a route to the router.
+
+##### *method* `resolve(method: str, resource: str) -> Route`
+
+`add` メソッドや `route` メソッドで追加されたルートから、
+`method` と `resource` のそれぞれが一致するルートを探して返します。
+
+そのようなルートが存在せず、`resource` のみが一致するルートが存在する場合は、
+`MethodNotAllowed(method)` exception を投げます。
+
+Otherwise, raise `ResourceNotFound(resource)` exception.
+
+### Module `tiny_router.simple_regex`
+
+#### *class* `SimpleRegexRouter[ResolvedRoute](matching_precedence: Literal["first-in", "last-in"])`
+
+An implementation of `Router[Callable[[Match[str]], ResolvedRoute], ResolvedRoute]`.
+
+`matching_precedence` 引数は、`resolve` メソッドの挙動に影響を与えます。
+`resolve` メソッドの説明を参照してください。
+
+##### *type parameter* `ResolvedRoute`
+
+Type of routes returned from `resolve` method.
+
+##### *method* `add(method: str, resource: str, route: Callable[[Match[str]], ResolvedRoute]) -> None`
+
+Add a route to the router.
+
+`resource` には正規表現文字列を渡すことができます。
+`resolve` メソッドの説明を参照してください。
+
+##### *method* `resolve(method: str, resource: str) -> ResolvedRoute`
+
+`add` メソッドや `route` メソッドで追加されたルートから、
+`method` が一致し、かつこのメソッドの引数の `resource` が
+そのルートの `resource` 正規表現文字列にマッチするようなルートを探して返します。
+
+`matching_precedence` が `first-in` に指定されていた場合、
+より最初に追加されたメソッドが優先してマッチします。
+`last-in` の場合、より最後に追加されたメソッドが優先してマッチします。
+
+返却されるルート (`ResolvedRoute`) は、
+`add` メソッドなどで追加したルート (`Callable[[Match[str]], ResolvedRoute]`) に
+引数としてマッチしたマッチオブジェクト (`Match[str]`) を渡してコールしたときの返り値です。
+
+そのようなルートが存在せず、`resource` のみがマッチするようなルートが存在する場合は、
+`MethodNotAllowed(method)` exception を投げます。
+
+Otherwise, raise `ResourceNotFound(resource)` exception.
+
+TODO: translate to english.
+
