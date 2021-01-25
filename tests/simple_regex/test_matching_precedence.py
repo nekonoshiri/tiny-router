@@ -1,4 +1,4 @@
-from tiny_router import SimpleRegexRouter
+from tiny_router.simple_regex import SimpleRegexRouter
 
 
 def set_router(router):

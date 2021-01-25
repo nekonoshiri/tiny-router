@@ -2,7 +2,8 @@ from unittest.mock import sentinel
 
 import pytest
 
-from tiny_router import MethodNotAllowed, ResourceNotFound, RouteNotFound, SimpleRouter
+from tiny_router import MethodNotAllowed, ResourceNotFound, RouteNotFound
+from tiny_router.simple import SimpleRouter
 
 
 @pytest.fixture

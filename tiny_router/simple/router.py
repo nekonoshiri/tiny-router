@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Dict, TypeVar
 
-from .exceptions import MethodNotAllowed, ResourceNotFound
-from .router import Router
+from ..exceptions import MethodNotAllowed, ResourceNotFound
+from ..router import Router
 
 Route = TypeVar("Route")
 

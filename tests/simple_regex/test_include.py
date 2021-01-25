@@ -1,6 +1,6 @@
 import pytest
 
-from tiny_router import SimpleRegexRouter
+from tiny_router.simple_regex import SimpleRegexRouter
 
 
 @pytest.fixture

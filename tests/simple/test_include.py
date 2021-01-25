@@ -1,6 +1,6 @@
 import pytest
 
-from tiny_router import SimpleRouter
+from tiny_router.simple import SimpleRouter
 
 
 @pytest.fixture

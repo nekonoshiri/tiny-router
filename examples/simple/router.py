@@ -1,6 +1,6 @@
 from typing import Callable
 
-from tiny_router import SimpleRouter
+from tiny_router.simple import SimpleRouter
 
 from .request import Request
 from .response import Response
