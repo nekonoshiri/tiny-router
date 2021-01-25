@@ -126,10 +126,10 @@ TODO
 
 Subclass of `Exception`, representing that the route is not found.
 
-#### *class* `MethodNotAllowed`
+#### *class* `MethodNotAllowed(method: str)`
 
 Subclass of `RouteNotFound`, representing that the method is not allowed.
 
-#### *class* `ResourceNotFound`
+#### *class* `ResourceNotFound(resource: str)`
 
 Subclass of `RouteNotFound`, representing that the resource is not found.
