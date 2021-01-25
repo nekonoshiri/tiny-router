@@ -130,7 +130,7 @@ TODO: メンバ変数について追記
 
 ### Module `tiny_router.simple`
 
-#### *class* `SimpleRouter[Route]`
+#### *class* `SimpleRouter[Route]()`
 
 An implementation of `Router[Route, Route]`.
 
@@ -178,6 +178,11 @@ Add a route to the router.
 `method` が一致し、かつこのメソッドの引数の `resource` が
 そのルートの `resource` 正規表現文字列にマッチするようなルートを探して返します。
 
+そのようなルートが存在せず、`resource` のみがマッチするようなルートが存在する場合は、
+`MethodNotAllowed(method)` exception を投げます。
+
+Otherwise, raise `ResourceNotFound(resource)` exception.
+
 `matching_precedence` が `first-in` に指定されていた場合、
 より最初に追加されたメソッドが優先してマッチします。
 `last-in` の場合、より最後に追加されたメソッドが優先してマッチします。
@@ -186,10 +191,4 @@ Add a route to the router.
 `add` メソッドなどで追加したルート (`Callable[[Match[str]], ResolvedRoute]`) に
 引数としてマッチしたマッチオブジェクト (`Match[str]`) を渡してコールしたときの返り値です。
 
-そのようなルートが存在せず、`resource` のみがマッチするようなルートが存在する場合は、
-`MethodNotAllowed(method)` exception を投げます。
-
-Otherwise, raise `ResourceNotFound(resource)` exception.
-
 TODO: translate to english.
-
