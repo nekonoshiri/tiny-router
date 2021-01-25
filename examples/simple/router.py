@@ -1,7 +1,10 @@
-from typing import Any, Callable, Dict
+from typing import Callable
 
 from tiny_router import SimpleRouter
 
-Route = Callable[[], Dict[str, Any]]
+from .request import Request
+from .response import Response
+
+Route = Callable[[Request], Response]
 
 Router = SimpleRouter[Route]

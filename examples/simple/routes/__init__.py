@@ -1,11 +1,6 @@
-from typing import Any, Callable, Dict
+from ..router import Router
+from . import create_user, get_user
 
-from tiny_router import SimpleRouter
-
-from . import create_user, list_users
-
-Route = Callable[[], Dict[str, Any]]
-
-router = SimpleRouter[Route]()
+router = Router()
+router.include(get_user.router)
 router.include(create_user.router)
-router.include(list_users.router)
