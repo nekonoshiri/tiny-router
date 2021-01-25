@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tiny-router"
-version = "0.0.8"
+version = "0.1.0"
 license = "MIT"
 description = "Tiny HTTP router"
 authors = ["Shiri Nekono <gexira.halen.toms@gmail.com>"]
@@ -11,7 +11,7 @@ repository = "https://github.com/nekonoshiri/tiny-router"
 documentation = "https://github.com/nekonoshiri/tiny-router"
 keywords = ["router"]
 classifiers = [
-  "Development Status :: 1 - Planning",
+  "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
   "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
   "Topic :: Software Development :: Libraries"
