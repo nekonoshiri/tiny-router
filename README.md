@@ -41,5 +41,95 @@ More examples are in `examples/` directory of
 
 ### Module `tiny_router`
 
+#### *abstract class* `Router`
+
+Router class, which can add and resolve routes.
+Classes implementing this class must implement abstract method `add` and `resolve`.
+
+##### *type parameter* `Route`
+
+Type of routes passed to `add` method.
+
+##### *type parameter* `ResolvedRoute`
+
+Type of routes returned from `resolve` method.
+
+##### *abstract method* `add(method: str, resource: str, route: Route) -> None`
+
+Shall add a route to the router.
+
+##### *abstract method* `resolve(method: str, resource: str) -> ResolvedRoute`
+
+Shall resolve a route, i.e. retrieve an added route from the router.
+Should raise `RouteNotFound` exception or its subclass if no routes are found.
+
+##### *method* `route(method: str, resource: str) -> Callable[[Route], None]`
+
+Return a decorator that adds the decorated object to the router.
+
+For example,
+
+```Python
+@router.route("GET", "/users")
+def route_func(params):
+    ...
+```
+
+is the same as
+
+```Python
+def route_func(params):
+    ...
+
+router.add("GET", "/users", route_func)
+```
+
+where `router` is a router.
+
+##### *method* `get(resource: str) -> Callable[[Route], None]`
+
+Same as `route("GET", resource)`.
+
+##### *method* `post(resource: str) -> Callable[[Route], None]`
+
+Same as `route("POST", resource)`.
+
+##### *method* `put(resource: str) -> Callable[[Route], None]`
+
+Same as `route("PUT", resource)`.
+
+##### *method* `patch(resource: str) -> Callable[[Route], None]`
+
+Same as `route("PATCH", resource)`.
+
+##### *method* `delete(resource: str) -> Callable[[Route], None]`
+
+Same as `route("DELETE", resource)`.
+
+##### *method* `head(resource: str) -> Callable[[Route], None]`
+
+Same as `route("HEAD", resource)`.
+
+#### *class* `SimpleRouter`
+
+An implementation of `Router`.
+
 TODO
 
+#### *class* `SimpleRegexRouter`
+
+An implementation of `Router`.
+
+TODO
+
+#### *class* `RouteNotFound`
+
+Subclass of `Exception`, representing that the route is not found.
+
+#### *class* `MethodNotAllowed`
+
+Subclass of `RouteNotFound`, representing that the method is not allowed.
+
+#### *class* `ResourceNotFound`
+
+Subclass of `RouteNotFound`, representing that the resource is not found.
