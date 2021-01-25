@@ -1,8 +1,11 @@
-from typing import Any, Callable, Dict
+from typing import Callable
 
 from tiny_router import SimpleRegexRouter
 
-ResolvedRoute = Callable[[], Dict[str, Any]]
+from .request import Request
+from .response import Response
+
+ResolvedRoute = Callable[[Request], Response]
 
 
 class Router(SimpleRegexRouter[ResolvedRoute]):
