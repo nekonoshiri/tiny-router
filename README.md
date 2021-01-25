@@ -10,7 +10,7 @@ Tiny HTTP router.
 ## Usage
 
 ```Python
-from tiny_router import SimpleRouter
+from tiny_router.simple import SimpleRouter
 
 router = SimpleRouter()
 
